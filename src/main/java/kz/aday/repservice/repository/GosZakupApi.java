@@ -18,6 +18,8 @@ import java.util.Map;
 @Slf4j
 @Component
 public class GosZakupApi {
+    private static final String SEARCH_AFTER = "search_after";
+    private static final String PAGE_NEXT = "page";
     public static final int BATCH_SIZE = 500;
     private static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String BEARER_TOKEN = "Bearer ";
@@ -38,9 +40,11 @@ public class GosZakupApi {
     }
 
     private Mono<JsonNode> executeJson(RequestGZ request) {
+        String url = createUrl(request);
+        log.info("SEND GET REQUEST URL:{}",url);
         return webClient
                 .get()
-                .uri(createUrl(request))
+                .uri(url)
                 .header(AUTHORIZATION_HEADER, BEARER_TOKEN + request.getToken())
                 .retrieve()
                 .bodyToMono(JsonNode.class)
@@ -51,7 +55,20 @@ public class GosZakupApi {
         if (request.getUrl().contains("?")) {
             return String.format("%s&%s=%d", request.getUrl(), Fields.limit, BATCH_SIZE);
         } else {
-            return String.format("%s?%s=%d", request.getUrl(), Fields.limit, BATCH_SIZE);
+            if (request.getUrl().contains("search_after") || request.getSearchAfter() == null || request.getSearchAfter() == 0 ) {
+                return String.format("%s?%s=%d", request.getUrl(), Fields.limit, BATCH_SIZE);
+            } else {
+                return String.format("%s?%s=%d&%s=%s&%s=%d",
+                        request.getUrl(),
+                        Fields.limit,
+                        BATCH_SIZE,
+                        PAGE_NEXT,
+                        "next",
+                        SEARCH_AFTER,
+                        request.getSearchAfter()
+                        );
+
+            }
         }
     }
 

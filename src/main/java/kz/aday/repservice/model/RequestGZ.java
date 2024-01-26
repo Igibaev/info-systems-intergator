@@ -1,6 +1,7 @@
 package kz.aday.repservice.model;
 
 import lombok.Data;
+import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
 public class RequestGZ {
     String token;
     String url;
+    Long searchAfter;
     String gzEntityName;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")

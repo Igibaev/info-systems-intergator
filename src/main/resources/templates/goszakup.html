@@ -35,7 +35,16 @@
                         placeholder="Урл">
             </div>
             <div class="col-md-4 mt-5">
-                <label for="datefilter">Выберить период выгрузки</label>
+                <label for="search_after">Искать после идентификатора</label>
+                <input
+                        type="number"
+                        class="form-control"
+                        th:field="*{searchAfter}"
+                        id="search_after"
+                        placeholder="Идентификатор">
+            </div>
+            <div class="col-md-4 mt-2">
+                <label for="datefilter">Выберитe период выгрузки</label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="datefilter" name="datefilter" autocomplete="off"/>
                     <div class="input-group-append">

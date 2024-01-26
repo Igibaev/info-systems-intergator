@@ -18,11 +18,13 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 
 @Slf4j
 @Controller
 public class ReportController {
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd_MM_yyyy");
     private final GZService reportService;
 
     public ReportController(GZService reportService) {
@@ -69,7 +71,21 @@ public class ReportController {
     }
 
     private String createFilename(RequestGZ request) {
-        return String.format("\"%s.%s\"", request.getGzEntityName(), request.getReportType().getFileExtension());
+        if (request.getDateFrom() != null && request.getDateTo() != null) {
+            return String.format("\"%s_%s-%s.%s\"",
+                    request.getGzEntityName(),
+                    simpleDateFormat.format(request.getDateFrom()),
+                    simpleDateFormat.format(request.getDateTo()),
+                    request.getReportType().getFileExtension()
+            );
+        } else {
+            return String.format("\"%s_%s.%s\"",
+                    request.getGzEntityName(),
+                    request.getSize(),
+                    request.getReportType().getFileExtension()
+            );
+        }
+
     }
 
 //    @PostMapping("/convertToJava")

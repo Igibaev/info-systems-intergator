@@ -139,20 +139,20 @@ public class GZService {
         ResponseGZ response;
         boolean wasHeaderWritten = false;
         int rowsExported = 0;
-        int size = request.getSize();
-        while (size >= GosZakupApi.BATCH_SIZE || size == 0) {
+        while (true) {
             response = gosZakupApi.execute(request).block();
             checkIfResponseIsNull(request.getUrl(), response);
             request.setUrl(response.getNextPage());
             if (!wasHeaderWritten) {
                 reportWriter.writeHeaders(response.getRows(), request.getGzEntityName());
                 wasHeaderWritten = true;
-            } else {
-                reportWriter.writeRows(response.getRows());
-                rowsExported += response.getRows().size();
             }
-            size -= GosZakupApi.BATCH_SIZE;
+            reportWriter.writeRows(response.getRows());
+            rowsExported += response.getRows().size();
             log.info("exported:{}", rowsExported);
+            if (rowsExported >= request.getSize()) {
+                break;
+            }
         }
         return rowsExported;
     }

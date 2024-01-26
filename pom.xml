@@ -10,13 +10,13 @@
     </parent>
     <groupId>kz.aday</groupId>
     <artifactId>rep-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>rep-service</name>
     <description>rep-service</description>
     <properties>
-        <java.version>15</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
 
