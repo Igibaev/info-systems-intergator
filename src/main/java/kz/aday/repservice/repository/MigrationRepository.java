@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @Repository
 public class MigrationRepository {
     private final String SELECT_ALL = "SELECT id, entityName, total, exported, lastRequestUrl, createdDate, status FROM migration;";
+    private final String EXISTS = "SELECT count(*) > 0 FROM migration WHERE entityName = :entityName AND status = :status;";
 
     private final String INSERT =
             "INSERT INTO migration (id, entityName, total, exported, lastRequestUrl, createdDate, status) \n" +
@@ -43,6 +44,20 @@ public class MigrationRepository {
     public void executeQuery(String query) {
         // i don't need safe in this project
         jdbcTemplate.getJdbcTemplate().execute(query);
+    }
+
+    public boolean exists(String entityName) {
+        if (entityName == null) {
+            log.error("WHEN CHECK BY DUPLICATE entityName IS NULL");
+            return false;
+        }
+        return jdbcTemplate.queryForObject(
+                EXISTS,
+                new MapSqlParameterSource()
+                        .addValue("entityName", entityName)
+                        .addValue("status", Migration.Status.IN_PROGRESS.name()),
+                boolean.class
+        );
     }
 
     public void delete(Long id) {

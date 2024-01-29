@@ -11,4 +11,4 @@ spring:
     async:
       request-timeout: -1
   codec:
-    max-in-memory-size: 500KB
+    max-in-memory-size: 5000KB

@@ -1,6 +1,7 @@
 package kz.aday.repservice.controller;
 
 import kz.aday.repservice.model.EntityNameGZ;
+import kz.aday.repservice.model.Migration;
 import kz.aday.repservice.model.RequestGZ;
 import kz.aday.repservice.service.GZService;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +37,6 @@ public class ReportController {
 
     @GetMapping("/error")
     public String error(Model model) {
-        model.addAttribute("gzEntities", EntityNameGZ.values());
         return "errorPage";
     }
 
@@ -66,10 +66,23 @@ public class ReportController {
     }
 
     @PostMapping("/gos-zakup/migrate")
-    public String gosZakupMigrate(@RequestParam String entityName, @ModelAttribute RequestGZ request) {
+    public String gosZakupMigrate(@RequestParam String entityName, @ModelAttribute RequestGZ request, Model model) {
         request.setGzEntityName(entityName);
-        reportService.startMigration(request);
-//        executorService.submit(() -> reportService.startMigration(request));
+        if (reportService.existMigration(request)) {
+            model.addAttribute(
+                    "error",
+                    "Миграция на данную сщность уже существует со статусом IN_PROGRESS "
+            );
+            return "errorPage";
+        }
+        long countInProgress = reportService.getAllMigrations().stream()
+                .filter(migration -> migration.getStatus() == Migration.Status.IN_PROGRESS)
+                .count();
+        if (countInProgress > 5) {
+            model.addAttribute("error", "Превышено кол-во одноверменный миграции, повторите запрос позднее");
+            return "errorPage";
+        }
+        executorService.submit(() -> reportService.startMigration(request));
         return "redirect:/";
     }
 

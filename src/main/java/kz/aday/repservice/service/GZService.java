@@ -53,7 +53,15 @@ public class GZService {
         return migrations;
     }
 
+    public boolean existMigration(RequestGZ request) {
+        return migrationRepository.exists(request.getGzEntityName());
+    }
+
     public void startMigration(RequestGZ request) {
+        if (migrationRepository.exists(request.getGzEntityName())) {
+            log.error("миграция на данную сущность уже существует со статусом IN_PROGRESS ");
+            return;
+        }
         Migration migration = Migration.builder()
                 .total(getTotal(request))
                 .entityName(request.getGzEntityName())
@@ -62,7 +70,7 @@ public class GZService {
                 .createdDate(LocalDateTime.now())
                 .build();
         migrationRepository.create(migration);
-        request.setSize(1000);
+        request.setSize(10000);
         log.info("Prepare request to migration [{}], set batchSize:{}", request, request.getSize());
         boolean isDDLQueryNeed = true;
         try {
