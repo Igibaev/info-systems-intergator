@@ -1,20 +1,32 @@
 package kz.aday.repservice.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import kz.aday.repservice.api.Fields;
 import kz.aday.repservice.exceptons.ResponseGZBadRequest;
+import kz.aday.repservice.model.Migration;
 import kz.aday.repservice.model.RequestGZ;
 import kz.aday.repservice.model.ResponseGZ;
-import kz.aday.repservice.repository.GosZakupApi;
+import kz.aday.repservice.api.GosZakupApi;
+import kz.aday.repservice.repository.MigrationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import java.awt.print.Pageable;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,13 +35,77 @@ import java.util.Map;
 @Slf4j
 @Service
 public class GZService {
-
     private final GosZakupApi gosZakupApi;
     private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private final MigrationRepository migrationRepository;
 
-
-    public GZService(GosZakupApi gzRepository) {
+    public GZService(GosZakupApi gzRepository, MigrationRepository migrationRepository) {
+        this.migrationRepository = migrationRepository;
         this.gosZakupApi = gzRepository;
+
+    }
+
+    public List<Migration> getAllMigrations() {
+        List<Migration> migrations = migrationRepository.getAllMigrations();
+        if (migrations == null) {
+            return new ArrayList<>();
+        }
+        return migrations;
+    }
+
+    public void startMigration(RequestGZ request) {
+        Migration migration = Migration.builder()
+                .total(getTotal(request))
+                .entityName(request.getGzEntityName())
+                .status(Migration.Status.IN_PROGRESS)
+                .exported(0)
+                .createdDate(LocalDateTime.now())
+                .build();
+        migrationRepository.create(migration);
+        request.setSize(1000);
+        log.info("Prepare request to migration [{}], set batchSize:{}", request, request.getSize());
+        boolean isDDLQueryNeed = true;
+        try {
+            int rowsMigrated = 0;
+            while (true) {
+                StringWriter stringWriter = new StringWriter();
+                ReportWriter writer = new SqlWriter(stringWriter, isDDLQueryNeed, request.isTruncateTable());
+                int exportedRows = export(request, writer);
+                log.info("Rows ready to migration: {}", exportedRows);
+
+                if (exportedRows == -1) {
+                    log.error("migration failed request:{}", request);
+                    migration.setStatus(Migration.Status.FAILED);
+                    migrationRepository.update(migration);
+                    break;
+                }
+
+                rowsMigrated+=exportedRows;
+                migration.setExported(rowsMigrated);
+                migration.setLastRequestUrl(request.getUrl());
+                migrationRepository.executeQuery(stringWriter.toString());
+                migrationRepository.update(migration);
+                log.info("Rows migrated {}", rowsMigrated);
+                isDDLQueryNeed = false;
+                if (request.isDone()) {
+                    log.info("All rows migrated, stop migration");
+                    migration.setStatus(Migration.Status.DONE);
+                    migrationRepository.update(migration);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            log.error("SOME ERROR {}", e.getMessage());
+            log.error("FLUSH MIGRATION {}", migration);
+            migration.setStatus(Migration.Status.FAILED);
+            migrationRepository.update(migration);
+        }
+    }
+
+    private Long getTotal(RequestGZ request) {
+        ResponseGZ response = gosZakupApi.execute(request.getUrl(), request.getToken()).block();
+        checkIfResponseIsNull(request.getUrl(), response);
+        return response.getTotal();
     }
 
     public StreamingResponseBody createReport(RequestGZ request) {
@@ -63,7 +139,7 @@ public class GZService {
         };
     }
 
-    private void export(RequestGZ request, ReportWriter reportWriter) throws IOException {
+    private int export(RequestGZ request, ReportWriter reportWriter) throws IOException {
         try {
             int rowsExported;
             if (request.getDateTo() != null && request.getDateFrom() != null) {
@@ -72,11 +148,13 @@ public class GZService {
                 rowsExported = exportBySize(request, reportWriter);
             }
             log.info("Report is done. Rows exported:{}", rowsExported);
+            return rowsExported;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             reportWriter.finish();
         }
+        return -1;
     }
 
     private int exportByDate(RequestGZ request, ReportWriter reportWriter) throws IOException {
@@ -88,10 +166,10 @@ public class GZService {
                 log.info("Break report, limit exceeded");
                 break;
             }
-            List<Map<String, String>> rows = new ArrayList<>();
+            List<Map<String, JsonNode>> rows = new ArrayList<>();
             response = gosZakupApi.execute(request).block();
             checkIfResponseIsNull(request.getUrl(), response);
-            request.setUrl(response.getNextPage());
+
             Date firstRowDate = getRowDate(response.getRows().get(0));
             Date lastRowDate = getRowDate(response.getRows().get(response.getRows().size() - 1));
 
@@ -105,7 +183,7 @@ public class GZService {
                 rows.addAll(response.getRows());
                 rowsExported += rows.size();
             } else if (isDateInTimeRange(firstRowDate, request.getDateFrom(), request.getDateTo())) {
-                for (Map<String, String> row : response.getRows()) {
+                for (Map<String, JsonNode> row : response.getRows()) {
                     Date rowDate = getRowDate(row);
                     if (isDateInTimeRange(rowDate, request.getDateFrom(), request.getDateTo())) {
                         rows.add(row);
@@ -113,7 +191,7 @@ public class GZService {
                 }
                 rowsExported += rows.size();
             } else if (isDateInTimeRange(lastRowDate, request.getDateFrom(), request.getDateTo())) {
-                for (Map<String, String> row : response.getRows()) {
+                for (Map<String, JsonNode> row : response.getRows()) {
                     Date rowDate = getRowDate(row);
                     if (isDateInTimeRange(rowDate, request.getDateFrom(), request.getDateTo())) {
                         rows.add(row);
@@ -131,6 +209,13 @@ public class GZService {
 
             reportWriter.writeRows(rows);
             log.info("exported:{}", rowsExported);
+            if (response.getNextPage().isEmpty()) {
+                log.info("next page doesn't exist, stoping report");
+                request.setDone(true);
+                break;
+            } else {
+                request.setUrl(response.getNextPage());
+            }
         }
         return rowsExported;
     }
@@ -142,16 +227,24 @@ public class GZService {
         while (true) {
             response = gosZakupApi.execute(request).block();
             checkIfResponseIsNull(request.getUrl(), response);
-            request.setUrl(response.getNextPage());
+
             if (!wasHeaderWritten) {
                 reportWriter.writeHeaders(response.getRows(), request.getGzEntityName());
                 wasHeaderWritten = true;
             }
+
             reportWriter.writeRows(response.getRows());
             rowsExported += response.getRows().size();
             log.info("exported:{}", rowsExported);
             if (rowsExported >= request.getSize()) {
                 break;
+            }
+            if (response.getNextPage().isEmpty()) {
+                log.info("next page doesn't exist, stop report");
+                request.setDone(true);
+                break;
+            } else {
+                request.setUrl(response.getNextPage());
             }
         }
         return rowsExported;
@@ -163,8 +256,8 @@ public class GZService {
         return !dateFrom.after(lastRowDate);
     }
 
-    private Date getRowDate(Map<String, String> row) {
-        String firstRowDate = row.get(Fields.crdate);
+    private Date getRowDate(Map<String, JsonNode> row) {
+        String firstRowDate = row.get(Fields.crdate).asText();
         try {
             if (firstRowDate == null) {
                 throw new ResponseGZBadRequest(

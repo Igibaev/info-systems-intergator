@@ -36,13 +36,48 @@
                     </a>
                 </td>
                 <td>
-                    <a th:href="@{/gos-zakup/migrate}">
+                    <a th:href="@{/gos-zakup/migrate(entityName=${entity.name})}">
                         <button type="button" class="btn btn-primary">Мигрировать данные</button>
                     </a>
                 </td>
             </tr>
         </tbody>
     </table>
+    <table class="table">
+        <h2>Мигрируемые данные</h2>
+        <thead class="thead-dark text-center">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Сущность</th>
+            <th scope="col">Общее</th>
+            <th scope="col">Загружено</th>
+            <th scope="col">Последний загруженный запрос</th>
+            <th scope="col">Дата начала</th>
+            <th scope="col">Статус</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        <tr th:if="${migrations.size() == 0}">
+            <td scope="col">Миграций нет</td>
+        </tr>
+        <tr th:each="mig : ${migrations}">
+            <th scope="row" th:text="${mig.id}"></th>
+            <td th:text="${mig.entityName}"></td>
+            <td th:text="${mig.total}"></td>
+            <td th:text="${mig.exported}"></td>
+            <td th:text="${mig.lastRequestUrl}"></td>
+            <td th:text="${mig.createdDate}"></td>
+            <td th:text="${mig.getStatus()}"></td>
+            <td>
+                <form action="#" th:action="@{/migration/delete(id=${mig.id})}" th:method="delete" >
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 
 

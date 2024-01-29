@@ -10,8 +10,7 @@ public enum EntityNameGZ {
     Acts("Реестр актов","acts"),
     Lots("Реестр лотов","lots"),
     Plans("Реестр годовых планов","plans"),
-    Rnu("Реестр недобросовестных поставщиков","rnu"),
-    TrdApp("Заявки поставщиков","trd-app");
+    Rnu("Реестр недобросовестных поставщиков","rnu");
 
     private String nameRu;
     private String name;

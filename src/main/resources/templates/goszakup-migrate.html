@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="#" th:action="@{/gos-zakup/export(entityName=${entity})}" th:object="${request}" method="post">
+    <form action="#" th:action="@{/gos-zakup/migrate(entityName=${entity})}" th:object="${request}" method="post">
         <div class="form-group row">
             <div class="col-lg-4 mt-5">
                 <label for="token">Токен авторизации</label>
@@ -35,8 +35,8 @@
                         id="url"
                         placeholder="Урл">
             </div>
-            <div class="col-md-4 mt-5">
-                <label for="search_after">Искать после идентификатора</label>
+            <div class="col-lg-4 mt-5">
+                <label for="search_after">Начать миграцию после идентификатора</label>
                 <input
                         type="number"
                         class="form-control"
@@ -44,35 +44,16 @@
                         id="search_after"
                         placeholder="Идентификатор">
             </div>
-            <div class="col-md-4 mt-2">
-                <label for="datefilter">Выберитe период выгрузки</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="datefilter" name="datefilter" autocomplete="off"/>
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                    </div>
+            <div class="col-lg-4 mt-5">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" th:field="*{truncateTable}" th:value="${truncateTable}">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Очистить данные таблицы перед миграцией
+                    </label>
                 </div>
             </div>
-
-            <div class="col-md-4 mt-2">
-                <label for="datefilter">Выберите тип отчета</label>
-                <select class="custom-select" th:field="*{reportType}">
-                    <option th:each="i : ${T(kz.aday.repservice.model.ReportType).values()}" th:value="${i}" th:text="${i}">
-                    </option>
-                </select>
-            </div>
-
-            <div class="col-md-4 mt-2">
-                <label for="datefilter">Выберите сколько записей выгрузить</label>
-                <select class="custom-select" th:field="*{size}">
-                    <option th:each="i : ${#numbers.sequence(1, 100)}" th:value="${i*500}" th:text="${i*500}"> </option>
-                </select>
-            </div>
-
-            <input type="hidden" class="form-control" name="dateFrom" th:field="*{dateFrom}"/>
-            <input type="hidden" class="form-control" name="dateTo" th:field="*{dateTo}"/>
         </div>
-        <button type="submit" class="btn btn-primary">Выгрузить отчет</button>
+        <button type="submit" class="btn btn-primary">Начать миграцию данных</button>
     </form>
 </div>
 

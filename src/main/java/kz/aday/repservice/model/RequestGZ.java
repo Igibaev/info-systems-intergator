@@ -20,8 +20,8 @@ public class RequestGZ {
 
     ReportType reportType;
 
-    int offset;
     int size;
 
-    String dbHost;
+    boolean truncateTable;
+    boolean isDone = false;
 }
