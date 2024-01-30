@@ -58,9 +58,6 @@ public class SqlWriter extends ReportWriter {
         StringBuilder queryDDLComments = new StringBuilder();
 
         StringBuilder queryDDL = new StringBuilder();
-        if (truncateTable) {
-            queryDDL.append(String.format(TRUNCATE_TABLE, entityName));
-        }
         queryDDL.append(String.format(TABLE_MASK_OPEN, entityName));
 
         Iterator<Map.Entry<String, JsonNode>> rowIterator = rows.stream().findFirst().get().entrySet().iterator();
@@ -78,6 +75,10 @@ public class SqlWriter extends ReportWriter {
         queryDDL.append(String.format(TABLE_MASK_CLOSE, entityName));
         queryDDL.append("\n");
         queryDDL.append(queryDDLComments);
+
+        if (truncateTable) {
+            queryDDL.append(String.format(TRUNCATE_TABLE, entityName));
+        }
 
         if (isDDLQueryNeed) {
             writer.write(queryDDL.toString());
