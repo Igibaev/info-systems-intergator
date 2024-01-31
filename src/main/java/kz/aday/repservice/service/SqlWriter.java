@@ -32,8 +32,8 @@ public class SqlWriter extends ReportWriter {
         this.truncateTable = truncateTable;
     }
 
-    private String INSERT_QUERY;
     private String TRUNCATE_TABLE = "TRUNCATE TABLE %s;\n\n";
+    private String TABLE_NAME;
 
     private String TABLE_MASK_OPEN = "CREATE TABLE IF NOT EXISTS %s (\n";
     private String FIELD_MASK = "    %s VARCHAR" ;
@@ -53,8 +53,7 @@ public class SqlWriter extends ReportWriter {
             return;
         }
         entityName = entityName.replaceAll("-", "_");
-        StringBuilder queryInsert = new StringBuilder();
-        queryInsert.append(String.format(INSERT_MASK_OPEN, entityName));
+        entityName = entityName.replaceAll("/", "_");
         StringBuilder queryDDLComments = new StringBuilder();
 
         StringBuilder queryDDL = new StringBuilder();
@@ -63,12 +62,10 @@ public class SqlWriter extends ReportWriter {
         Iterator<Map.Entry<String, JsonNode>> rowIterator = rows.stream().findFirst().get().entrySet().iterator();
         while (rowIterator.hasNext()) {
             String header = rowIterator.next().getKey();
-            queryInsert.append(header);
             queryDDLComments.append(String.format(COMMENT_MASK, entityName, header, getText(entityName, header)));
             queryDDL.append(String.format(FIELD_MASK, header));
             if (rowIterator.hasNext()) {
                 queryDDL.append(",\n");
-                queryInsert.append(", ");
             }
         }
 
@@ -85,8 +82,7 @@ public class SqlWriter extends ReportWriter {
             writer.flush();
         }
 
-        queryInsert.append(INSERT_MASK_CLOSE);
-        this.INSERT_QUERY = queryInsert.toString();
+        this.TABLE_NAME = entityName;
     }
 
     @Override
@@ -96,21 +92,28 @@ public class SqlWriter extends ReportWriter {
         }
 
         for (Map<String, JsonNode> row: rows) {
+            StringBuilder queryInsert = new StringBuilder();
+            queryInsert.append(String.format(INSERT_MASK_OPEN, TABLE_NAME));
             StringBuilder queryInsertValues = new StringBuilder();
-            queryInsertValues.append(INSERT_QUERY);
+
             queryInsertValues.append(VALUES_MASK_OPEN);
             Iterator<Map.Entry<String, JsonNode>> rowIterator = row.entrySet().iterator();
             while (rowIterator.hasNext()) {
-                String value = convertToText(rowIterator.next().getValue()).replaceAll("'","");
+                Map.Entry<String, JsonNode> mapValue = rowIterator.next();
+                queryInsert.append(mapValue.getKey());
+                String value = convertToText(mapValue.getValue()).replaceAll("'","");
                 queryInsertValues.append("'");
                 queryInsertValues.append(value);
                 queryInsertValues.append("'");
                 if (rowIterator.hasNext()) {
                     queryInsertValues.append(", ");
+                    queryInsert.append(", ");
                 }
             }
+            queryInsert.append(INSERT_MASK_CLOSE);
             queryInsertValues.append(VALUES_MASK_CLOSE);
-            writer.write(queryInsertValues.toString());
+            queryInsert.append(queryInsertValues.toString());
+            writer.write(queryInsert.toString());
 
         }
         writer.flush();

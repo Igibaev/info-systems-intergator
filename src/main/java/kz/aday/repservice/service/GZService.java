@@ -70,7 +70,7 @@ public class GZService {
                 .createdDate(LocalDateTime.now())
                 .build();
         migrationRepository.create(migration);
-        request.setSize(10000);
+        request.setSize(defineRequestSize(request.getGzEntityName()));
         log.info("Prepare request to migration [{}], set batchSize:{}", request, request.getSize());
         boolean isDDLQueryNeed = true;
         try {
@@ -108,6 +108,13 @@ public class GZService {
             migration.setStatus(Migration.Status.FAILED);
             migrationRepository.update(migration);
         }
+    }
+
+    private int defineRequestSize(String gzEntityName) {
+        if (gzEntityName.contains("plans")) {
+            return 500;
+        }
+        return 10000;
     }
 
     private Long getTotal(RequestGZ request) {
@@ -177,6 +184,7 @@ public class GZService {
             List<Map<String, JsonNode>> rows = new ArrayList<>();
             response = gosZakupApi.execute(request).block();
             checkIfResponseIsNull(request.getUrl(), response);
+            request.setUrl(response.getNextPage());
 
             Date firstRowDate = getRowDate(response.getRows().get(0));
             Date lastRowDate = getRowDate(response.getRows().get(response.getRows().size() - 1));
@@ -221,8 +229,6 @@ public class GZService {
                 log.info("next page doesn't exist, stoping report");
                 request.setDone(true);
                 break;
-            } else {
-                request.setUrl(response.getNextPage());
             }
         }
         return rowsExported;
@@ -235,6 +241,7 @@ public class GZService {
         while (true) {
             response = gosZakupApi.execute(request).block();
             checkIfResponseIsNull(request.getUrl(), response);
+            request.setUrl(response.getNextPage());
 
             if (!wasHeaderWritten) {
                 reportWriter.writeHeaders(response.getRows(), request.getGzEntityName());
@@ -251,8 +258,6 @@ public class GZService {
                 log.info("next page doesn't exist, stop report");
                 request.setDone(true);
                 break;
-            } else {
-                request.setUrl(response.getNextPage());
             }
         }
         return rowsExported;
