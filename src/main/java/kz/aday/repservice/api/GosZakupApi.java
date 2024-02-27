@@ -1,10 +1,10 @@
 package kz.aday.repservice.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import kz.aday.repservice.api.Fields;
 import kz.aday.repservice.model.RequestGZ;
 import kz.aday.repservice.model.ResponseGZ;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -25,7 +25,7 @@ public class GosZakupApi {
     private static final String BEARER_TOKEN = "Bearer ";
     private final WebClient webClient;
 
-    public GosZakupApi(WebClient webClient) {
+    public GosZakupApi(@Qualifier("gosZakupApiClient") WebClient webClient) {
         this.webClient = webClient;
     }
 
@@ -50,7 +50,7 @@ public class GosZakupApi {
     }
 
     private Mono<JsonNode> executeJson(String url, String token) {
-        log.info("SEND GET TOTAL REQUEST URL:{}",url);
+        log.info("SEND GET TOTAL REQUEST URL:{}", url);
         return webClient
                 .get()
                 .uri(url)
@@ -62,7 +62,7 @@ public class GosZakupApi {
 
     private Mono<JsonNode> executeJson(RequestGZ request) {
         String url = createUrl(request);
-        log.info("SEND GET REQUEST URL:{}",url);
+        log.info("SEND GET REQUEST URL:{}", url);
         return webClient
                 .get()
                 .uri(url)
@@ -76,7 +76,7 @@ public class GosZakupApi {
         if (request.getUrl().contains("?")) {
             return String.format("%s&%s=%d", request.getUrl(), Fields.limit, BATCH_SIZE);
         } else {
-            if (request.getUrl().contains("search_after") || request.getSearchAfter() == null || request.getSearchAfter() == 0 ) {
+            if (request.getUrl().contains("search_after") || request.getSearchAfter() == null || request.getSearchAfter() == 0) {
                 return String.format("%s?%s=%d", request.getUrl(), Fields.limit, BATCH_SIZE);
             } else {
                 return String.format("%s?%s=%d&%s=%s&%s=%d",
@@ -87,7 +87,7 @@ public class GosZakupApi {
                         "next",
                         SEARCH_AFTER,
                         request.getSearchAfter()
-                        );
+                );
 
             }
         }

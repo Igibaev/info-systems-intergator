@@ -1,0 +1,2236 @@
+[
+  {
+    "checked": true,
+    "iconCls": null,
+    "id": 741880,
+    "parentId": 0,
+    "text": "РЕСПУБЛИКА КАЗАХСТАН",
+    "leaf": false,
+    "hasData": true,
+    "children": [
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 247783,
+        "parentId": 741880,
+        "text": "АКМОЛИНСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 247784,
+            "parentId": 247783,
+            "text": "КОКШЕТАУ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 247791,
+            "parentId": 247783,
+            "text": "СТЕПНОГОРСК Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 247807,
+            "parentId": 247783,
+            "text": "АККОЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 247855,
+            "parentId": 247783,
+            "text": "АРШАЛЫНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 247904,
+            "parentId": 247783,
+            "text": "АСТРАХАНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 247961,
+            "parentId": 247783,
+            "text": "АТБАСАРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248026,
+            "parentId": 247783,
+            "text": "БУЛАНДЫНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248076,
+            "parentId": 247783,
+            "text": "ЕГИНДЫКОЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248100,
+            "parentId": 247783,
+            "text": "РАЙОН БИРЖАН САЛ",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248165,
+            "parentId": 247783,
+            "text": "ЕРЕЙМЕНТАУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248261,
+            "parentId": 247783,
+            "text": "ЕСИЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248322,
+            "parentId": 247783,
+            "text": "ЖАКСЫНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248378,
+            "parentId": 247783,
+            "text": "ЖАРКАИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248433,
+            "parentId": 247783,
+            "text": "ЗЕРЕНДИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248558,
+            "parentId": 247783,
+            "text": "КОРГАЛЖЫНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248592,
+            "parentId": 247783,
+            "text": "САНДЫКТАУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248655,
+            "parentId": 247783,
+            "text": "ЦЕЛИНОГРАДСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248729,
+            "parentId": 247783,
+            "text": "ШОРТАНДИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248775,
+            "parentId": 247783,
+            "text": "БУРАБАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 248875,
+        "parentId": 741880,
+        "text": "АКТЮБИНСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248876,
+            "parentId": 248875,
+            "text": "АКТОБЕ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 248919,
+            "parentId": 248875,
+            "text": "АЛГИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 249006,
+            "parentId": 248875,
+            "text": "АЙТЕКЕБИЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 249152,
+            "parentId": 248875,
+            "text": "БАЙГАНИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 249398,
+            "parentId": 248875,
+            "text": "КАРГАЛИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 249439,
+            "parentId": 248875,
+            "text": "ХОБДИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 249572,
+            "parentId": 248875,
+            "text": "МАРТУКСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 249637,
+            "parentId": 248875,
+            "text": "МУГАЛЖАРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 249809,
+            "parentId": 248875,
+            "text": "УИЛСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 249877,
+            "parentId": 248875,
+            "text": "ТЕМИРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 249978,
+            "parentId": 248875,
+            "text": "ХРОМТАУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 250101,
+            "parentId": 248875,
+            "text": "ШАЛКАРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 250353,
+            "parentId": 248875,
+            "text": "ИРГИЗСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 250502,
+        "parentId": 741880,
+        "text": "АЛМАТИНСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 250517,
+            "parentId": 250502,
+            "text": "КАПЧАГАЙ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 250736,
+            "parentId": 250502,
+            "text": "БАЛХАШСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 251043,
+            "parentId": 250502,
+            "text": "ЕНБЕКШИКАЗАХСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 251178,
+            "parentId": 250502,
+            "text": "ЖАМБЫЛСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 251556,
+            "parentId": 250502,
+            "text": "КАРАСАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 251751,
+            "parentId": 250502,
+            "text": "РАЙЫМБЕКСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 251976,
+            "parentId": 250502,
+            "text": "ТАЛГАРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 252156,
+            "parentId": 250502,
+            "text": "УЙГУРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 252213,
+            "parentId": 250502,
+            "text": "ИЛИЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 77208139,
+        "parentId": 741880,
+        "text": "ОБЛАСТЬ ЖЕТІСУ",
+        "leaf": false,
+        "hasData": false,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 250503,
+            "parentId": 77208139,
+            "text": "ТАЛДЫКОРГАН Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 250538,
+            "parentId": 77208139,
+            "text": "ТЕКЕЛИ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 250542,
+            "parentId": 77208139,
+            "text": "АКСУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 250611,
+            "parentId": 77208139,
+            "text": "АЛАКОЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 251325,
+            "parentId": 77208139,
+            "text": "КЕРБУЛАКСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 251435,
+            "parentId": 77208139,
+            "text": "КОКСУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 251488,
+            "parentId": 77208139,
+            "text": "КАРАТАЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 251666,
+            "parentId": 77208139,
+            "text": "ПАНФИЛОВСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 251880,
+            "parentId": 77208139,
+            "text": "САРКАНДСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 252088,
+            "parentId": 77208139,
+            "text": "ЕСКЕЛЬДИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 252311,
+        "parentId": 741880,
+        "text": "АТЫРАУСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 252312,
+            "parentId": 252311,
+            "text": "АТЫРАУ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 252371,
+            "parentId": 252311,
+            "text": "ЖЫЛЫОЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 252445,
+            "parentId": 252311,
+            "text": "ИНДЕРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 252685,
+            "parentId": 252311,
+            "text": "ИСАТАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 252748,
+            "parentId": 252311,
+            "text": "КУРМАНГАЗИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 252826,
+            "parentId": 252311,
+            "text": "КЗЫЛКОГИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 253049,
+            "parentId": 252311,
+            "text": "МАКАТСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 253062,
+            "parentId": 252311,
+            "text": "МАХАМБЕТСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 253160,
+        "parentId": 741880,
+        "text": "ЗАПАДНО-КАЗАХСТАНСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 253161,
+            "parentId": 253160,
+            "text": "УРАЛЬСК Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 253176,
+            "parentId": 253160,
+            "text": "АКЖАИКСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 253495,
+            "parentId": 253160,
+            "text": "БУРЛИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 253546,
+            "parentId": 253160,
+            "text": "ЖАНГАЛИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 253824,
+            "parentId": 253160,
+            "text": "ЖАНИБЕКСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 253996,
+            "parentId": 253160,
+            "text": "РАЙОН БӘЙТЕРЕК",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 254117,
+            "parentId": 253160,
+            "text": "КАЗТАЛОВСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 254548,
+            "parentId": 253160,
+            "text": "КАРАТОБИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 254695,
+            "parentId": 253160,
+            "text": "БОКЕЙОРДИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 255132,
+            "parentId": 253160,
+            "text": "СЫРЫМСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 255288,
+            "parentId": 253160,
+            "text": "ТАСКАЛИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 255407,
+            "parentId": 253160,
+            "text": "ТЕРЕКТИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 255505,
+            "parentId": 253160,
+            "text": "ЧИНГИРЛАУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 255577,
+        "parentId": 741880,
+        "text": "ЖАМБЫЛСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 255578,
+            "parentId": 255577,
+            "text": "ТАРАЗ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 255580,
+            "parentId": 255577,
+            "text": "БАЙЗАКСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 255668,
+            "parentId": 255577,
+            "text": "ЖАМБЫЛСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 255780,
+            "parentId": 255577,
+            "text": "ЖУАЛЫНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 255879,
+            "parentId": 255577,
+            "text": "КОРДАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 255978,
+            "parentId": 255577,
+            "text": "РАЙОН ТУРАРА РЫСКУЛОВА",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256156,
+            "parentId": 255577,
+            "text": "МЕРКЕНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256255,
+            "parentId": 255577,
+            "text": "МОЙЫНКУМСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256365,
+            "parentId": 255577,
+            "text": "САРЫСУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256442,
+            "parentId": 255577,
+            "text": "ТАЛАССКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256504,
+            "parentId": 255577,
+            "text": "ШУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 256619,
+        "parentId": 741880,
+        "text": "КАРАГАНДИНСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256620,
+            "parentId": 256619,
+            "text": "КАРАГАНДА Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256627,
+            "parentId": 256619,
+            "text": "БАЛХАШ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256700,
+            "parentId": 256619,
+            "text": "САРАНЬ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256709,
+            "parentId": 256619,
+            "text": "ТЕМИРТАУ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256713,
+            "parentId": 256619,
+            "text": "ШАХТИНСК Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256721,
+            "parentId": 256619,
+            "text": "АБАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256779,
+            "parentId": 256619,
+            "text": "АКТОГАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 257147,
+            "parentId": 256619,
+            "text": "БУХАР-ЖЫРАУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 257376,
+            "parentId": 256619,
+            "text": "КАРКАРАЛИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 257880,
+            "parentId": 256619,
+            "text": "НУРИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 257993,
+            "parentId": 256619,
+            "text": "ОСАКАРОВСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 258445,
+            "parentId": 256619,
+            "text": "ШЕТСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 77208140,
+        "parentId": 741880,
+        "text": "ОБЛАСТЬ ҰЛЫТАУ",
+        "leaf": false,
+        "hasData": false,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256636,
+            "parentId": 77208140,
+            "text": "ЖЕЗКАЗГАН Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256694,
+            "parentId": 77208140,
+            "text": "КАРАЖАЛ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 256704,
+            "parentId": 77208140,
+            "text": "САТПАЕВ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 257257,
+            "parentId": 77208140,
+            "text": "ЖАНААРКИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 258074,
+            "parentId": 77208140,
+            "text": "УЛЫТАУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 258742,
+        "parentId": 741880,
+        "text": "КОСТАНАЙСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 258743,
+            "parentId": 258742,
+            "text": "КОСТАНАЙ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 258745,
+            "parentId": 258742,
+            "text": "АРКАЛЫК Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 258875,
+            "parentId": 258742,
+            "text": "ЛИСАКОВСК Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 258881,
+            "parentId": 258742,
+            "text": "РУДНЫЙ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 258888,
+            "parentId": 258742,
+            "text": "АЛТЫНСАРИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 258937,
+            "parentId": 258742,
+            "text": "АМАНГЕЛЬДИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259056,
+            "parentId": 258742,
+            "text": "АУЛИЕКОЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259122,
+            "parentId": 258742,
+            "text": "ДЕНИСОВСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259184,
+            "parentId": 258742,
+            "text": "ЖАНГЕЛЬДИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259303,
+            "parentId": 258742,
+            "text": "ЖИТИКАРИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259350,
+            "parentId": 258742,
+            "text": "КАМЫСТИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259391,
+            "parentId": 258742,
+            "text": "КАРАБАЛЫКСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259472,
+            "parentId": 258742,
+            "text": "КАРАСУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259550,
+            "parentId": 258742,
+            "text": "КОСТАНАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259642,
+            "parentId": 258742,
+            "text": "МЕНДЫКАРИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259726,
+            "parentId": 258742,
+            "text": "НАУРЗУМСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259813,
+            "parentId": 258742,
+            "text": "САРЫКОЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259873,
+            "parentId": 258742,
+            "text": "РАЙОН БЕИМБЕТА МАЙЛИНА",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 259939,
+            "parentId": 258742,
+            "text": "УЗУНКОЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260015,
+            "parentId": 258742,
+            "text": "ФЕДОРОВСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 260099,
+        "parentId": 741880,
+        "text": "КЫЗЫЛОРДИНСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260100,
+            "parentId": 260099,
+            "text": "КЫЗЫЛОРДА Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260134,
+            "parentId": 260099,
+            "text": "АРАЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260423,
+            "parentId": 260099,
+            "text": "ЖАЛАГАШСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260475,
+            "parentId": 260099,
+            "text": "ЖАНАКОРГАНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260547,
+            "parentId": 260099,
+            "text": "КАЗАЛИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260631,
+            "parentId": 260099,
+            "text": "КАРМАКШИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260702,
+            "parentId": 260099,
+            "text": "СЫРДАРЬИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260770,
+            "parentId": 260099,
+            "text": "ЧИИЛИЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 260907,
+        "parentId": 741880,
+        "text": "МАНГИСТАУСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260908,
+            "parentId": 260907,
+            "text": "АКТАУ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260912,
+            "parentId": 260907,
+            "text": "ЖАНАОЗЕН Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 260918,
+            "parentId": 260907,
+            "text": "БЕЙНЕУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 261032,
+            "parentId": 260907,
+            "text": "КАРАКИЯНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 261124,
+            "parentId": 260907,
+            "text": "МАНГИСТАУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 261352,
+            "parentId": 260907,
+            "text": "МУНАЙЛИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 261369,
+            "parentId": 260907,
+            "text": "ТУПКАРАГАНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 261475,
+        "parentId": 741880,
+        "text": "ЮЖНО-КАЗАХСТАНСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 261476,
+            "parentId": 261475,
+            "text": "ШЫМКЕНТ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 261484,
+            "parentId": 261475,
+            "text": "АРЫСЬ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 261521,
+            "parentId": 261475,
+            "text": "КЕНТАУ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 261534,
+            "parentId": 261475,
+            "text": "ТУРКЕСТАН Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 261639,
+            "parentId": 261475,
+            "text": "РАЙОН БАЙДИБЕКА",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 261730,
+            "parentId": 261475,
+            "text": "КАЗЫГУРТСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 262071,
+            "parentId": 261475,
+            "text": "МАКТААРАЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 262278,
+            "parentId": 261475,
+            "text": "ОРДАБАСЫНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 262348,
+            "parentId": 261475,
+            "text": "ОТРАРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 262439,
+            "parentId": 261475,
+            "text": "САЙРАМСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 262556,
+            "parentId": 261475,
+            "text": "САРЫАГАШСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 262735,
+            "parentId": 261475,
+            "text": "СУЗАКСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 262786,
+            "parentId": 261475,
+            "text": "ТОЛЕБИЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 262861,
+            "parentId": 261475,
+            "text": "ТЮЛЬКУБАССКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 262945,
+            "parentId": 261475,
+            "text": "ШАРДАРИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 263009,
+        "parentId": 741880,
+        "text": "ПАВЛОДАРСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263010,
+            "parentId": 263009,
+            "text": "ПАВЛОДАР Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263024,
+            "parentId": 263009,
+            "text": "АКСУ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263088,
+            "parentId": 263009,
+            "text": "ЭКИБАСТУЗ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263165,
+            "parentId": 263009,
+            "text": "АКТОГАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263218,
+            "parentId": 263009,
+            "text": "БАЯНАУЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263465,
+            "parentId": 263009,
+            "text": "ЖЕЛЕЗИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263531,
+            "parentId": 263009,
+            "text": "ИРТЫШСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263588,
+            "parentId": 263009,
+            "text": "РАЙОН ТЕРЕҢКӨЛ",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263659,
+            "parentId": 263009,
+            "text": "РАЙОН АҚҚУЛЫ",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263726,
+            "parentId": 263009,
+            "text": "МАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263842,
+            "parentId": 263009,
+            "text": "ПАВЛОДАРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263925,
+            "parentId": 263009,
+            "text": "УСПЕНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 263964,
+            "parentId": 263009,
+            "text": "ЩЕРБАКТИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 264023,
+        "parentId": 741880,
+        "text": "СЕВЕРО-КАЗАХСТАНСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264024,
+            "parentId": 264023,
+            "text": "ПЕТРОПАВЛОВСК Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264031,
+            "parentId": 264023,
+            "text": "АЙЫРТАУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264140,
+            "parentId": 264023,
+            "text": "АКЖАРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264178,
+            "parentId": 264023,
+            "text": "РАЙОН МАГЖАНА ЖУМАБАЕВА",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264274,
+            "parentId": 264023,
+            "text": "ЕСИЛЬСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264351,
+            "parentId": 264023,
+            "text": "ЖАМБЫЛСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264430,
+            "parentId": 264023,
+            "text": "КЫЗЫЛЖАРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264529,
+            "parentId": 264023,
+            "text": "МАМЛЮТСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264587,
+            "parentId": 264023,
+            "text": "РАЙОН ШАЛ АКЫНА",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264646,
+            "parentId": 264023,
+            "text": "АККАЙЫНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264693,
+            "parentId": 264023,
+            "text": "ТАЙЫНШИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264811,
+            "parentId": 264023,
+            "text": "ТИМИРЯЗЕВСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264854,
+            "parentId": 264023,
+            "text": "УАЛИХАНОВСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264901,
+            "parentId": 264023,
+            "text": "РАЙОН ИМ.ГАБИТА МУСРЕПОВА",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 264990,
+        "parentId": 741880,
+        "text": "ВОСТОЧНО-КАЗАХСТАНСКАЯ ОБЛАСТЬ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 264991,
+            "parentId": 264990,
+            "text": "УСТЬ-КАМЕНОГОРСК Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 265011,
+            "parentId": 264990,
+            "text": "РИДДЕР Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 266103,
+            "parentId": 264990,
+            "text": "ГЛУБОКОВСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 266477,
+            "parentId": 264990,
+            "text": "ЗАЙСАНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 266711,
+            "parentId": 264990,
+            "text": "РАЙОН АЛТАЙ",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 266872,
+            "parentId": 264990,
+            "text": "КУРЧУМСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 267072,
+            "parentId": 264990,
+            "text": "КАТОН-КАРАГАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 267140,
+            "parentId": 264990,
+            "text": "ТАРБАГАТАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 267752,
+            "parentId": 264990,
+            "text": "УЛАНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 267955,
+            "parentId": 264990,
+            "text": "ШЕМОНАИХИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 77208141,
+        "parentId": 741880,
+        "text": "ОБЛАСТЬ АБАЙ",
+        "leaf": false,
+        "hasData": false,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 265009,
+            "parentId": 77208141,
+            "text": "КУРЧАТОВ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 265067,
+            "parentId": 77208141,
+            "text": "СЕМЕЙ Г.А.",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 265327,
+            "parentId": 77208141,
+            "text": "АБАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 265691,
+            "parentId": 77208141,
+            "text": "АЯГОЗСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 265933,
+            "parentId": 77208141,
+            "text": "БЕСКАРАГАЙСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 266012,
+            "parentId": 77208141,
+            "text": "БОРОДУЛИХИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 266177,
+            "parentId": 77208141,
+            "text": "ЖАРМИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 266788,
+            "parentId": 77208141,
+            "text": "КОКПЕКТИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 267857,
+            "parentId": 77208141,
+            "text": "УРДЖАРСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 268012,
+        "parentId": 741880,
+        "text": "Г.АСТАНА",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 268015,
+            "parentId": 268012,
+            "text": "РАЙОН АЛМАТЫ",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "checked": true,
+        "iconCls": null,
+        "id": 268020,
+        "parentId": 741880,
+        "text": "Г.АЛМАТЫ",
+        "leaf": false,
+        "hasData": true,
+        "children": [
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 268023,
+            "parentId": 268020,
+            "text": "АЛМАЛИНСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 268025,
+            "parentId": 268020,
+            "text": "АЛАТАУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 268027,
+            "parentId": 268020,
+            "text": "АУЭЗОВСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 268033,
+            "parentId": 268020,
+            "text": "МЕДЕУСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          },
+          {
+            "checked": true,
+            "iconCls": null,
+            "id": 268035,
+            "parentId": 268020,
+            "text": "ТУРКСИБСКИЙ РАЙОН",
+            "leaf": true,
+            "hasData": true,
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+]
