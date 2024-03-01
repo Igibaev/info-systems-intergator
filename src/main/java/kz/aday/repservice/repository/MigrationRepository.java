@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Repository
 public class MigrationRepository {
-    private final String SELECT_ALL = "SELECT id, entityName, total, exported, lastRequestUrl, createdDate, status FROM migration;";
+    private final String SELECT_ALL = "SELECT id, entityName, total, exported, lastRequestUrl, createdDate, status FROM migration ORDER BY id DESC;";
     private final String EXISTS = "SELECT count(*) > 0 FROM migration WHERE entityName = :entityName AND status = :status;";
 
     private final String INSERT =

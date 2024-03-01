@@ -3,6 +3,7 @@ package kz.aday.repservice.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import kz.aday.repservice.api.Fields;
 import kz.aday.repservice.exceptons.ResponseGZBadRequest;
+import kz.aday.repservice.model.EntityNameGZ;
 import kz.aday.repservice.model.Migration;
 import kz.aday.repservice.model.RequestGZ;
 import kz.aday.repservice.model.ResponseGZ;
@@ -28,6 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +52,12 @@ public class GZService {
         if (migrations == null) {
             return new ArrayList<>();
         }
+        migrations.forEach(migration -> {
+            EntityNameGZ entityNameGZ = EntityNameGZ.getByEntityName(migration.getEntityName());
+            if (entityNameGZ != null) {
+                migration.setEntityName(String.format("%s (%s)", entityNameGZ.getNameRu(), migration.getEntityName()));
+            }
+        });
         return migrations;
     }
 
