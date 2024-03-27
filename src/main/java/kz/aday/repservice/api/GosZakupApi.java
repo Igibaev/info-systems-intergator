@@ -1,19 +1,22 @@
 package kz.aday.repservice.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import kz.aday.repservice.model.EntityMigration;
 import kz.aday.repservice.model.RequestGZ;
 import kz.aday.repservice.model.ResponseGZ;
+import kz.aday.repservice.repository.EntityRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+import static kz.aday.repservice.util.JsonUtil.convertToListRow;
 
 @Slf4j
 @Component
@@ -24,19 +27,37 @@ public class GosZakupApi {
     private static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String BEARER_TOKEN = "Bearer ";
     private final WebClient webClient;
+    private final EntityRepository entityRepository;
+    private final ConcurrentMap<String, Map<String, String>> requiredLocalizedFields = new ConcurrentHashMap<>();
 
-    public GosZakupApi(@Qualifier("gosZakupApiClient") WebClient webClient) {
+    public GosZakupApi(@Qualifier("gosZakupApiClient") WebClient webClient, EntityRepository entityRepository) {
         this.webClient = webClient;
+        this.entityRepository = entityRepository;
     }
 
     public Mono<ResponseGZ> execute(RequestGZ request) {
-        return executeJson(request)
-                .map(jsonNode -> {
-                    Long total = jsonNode.get(Fields.total).asLong();
-                    int limit = jsonNode.get(Fields.limit).asInt();
-                    String nextPage = jsonNode.get(Fields.nexPage).asText();
-                    return new ResponseGZ(total, limit, nextPage, convertToListRow(jsonNode));
-                });
+        Map<String,String> fields = requiredLocalizedFields.getOrDefault(
+                request.getGzEntityName(),
+                Optional.ofNullable(entityRepository.getByName(request.getGzEntityName())).orElse(new EntityMigration()).getLocalization()
+                );
+        if (fields == null || fields.isEmpty()) {
+            return executeJson(request)
+                    .map(jsonNode -> {
+                        Long total = jsonNode.get(Fields.total).asLong();
+                        int limit = jsonNode.get(Fields.limit).asInt();
+                        String nextPage = jsonNode.get(Fields.nexPage).asText();
+                        return new ResponseGZ(total, limit, nextPage, convertToListRow(jsonNode));
+                    });
+        } else {
+            return executeJson(request)
+                    .map(jsonNode -> {
+                        Long total = jsonNode.get(Fields.total).asLong();
+                        int limit = jsonNode.get(Fields.limit).asInt();
+                        String nextPage = jsonNode.get(Fields.nexPage).asText();
+                        return new ResponseGZ(total, limit, nextPage, convertToListRow(jsonNode, fields));
+                    });
+        }
+
     }
 
     public Mono<ResponseGZ> execute(String url, String token) {
@@ -49,7 +70,7 @@ public class GosZakupApi {
                 });
     }
 
-    private Mono<JsonNode> executeJson(String url, String token) {
+    public Mono<JsonNode> executeJson(String url, String token) {
         log.info("SEND GET TOTAL REQUEST URL:{}", url);
         return webClient
                 .get()
@@ -60,7 +81,7 @@ public class GosZakupApi {
                 .retry(10);
     }
 
-    private Mono<JsonNode> executeJson(RequestGZ request) {
+    public Mono<JsonNode> executeJson(RequestGZ request) {
         String url = createUrl(request);
         log.info("SEND GET REQUEST URL:{}", url);
         return webClient
@@ -91,20 +112,5 @@ public class GosZakupApi {
 
             }
         }
-    }
-
-    private List<Map<String, JsonNode>> convertToListRow(JsonNode node) {
-        List<Map<String, JsonNode>> rows = new ArrayList<>();
-        Iterator<JsonNode> iterator = node.get(Fields.items).elements();
-        while (iterator.hasNext()) {
-            Map<String, JsonNode> row = new HashMap<>();
-            Iterator<Map.Entry<String, JsonNode>> rowNodeIterator = iterator.next().fields();
-            while (rowNodeIterator.hasNext()) {
-                Map.Entry<String, JsonNode> rowNode = rowNodeIterator.next();
-                row.put(rowNode.getKey(), rowNode.getValue());
-            }
-            rows.add(row);
-        }
-        return rows;
     }
 }

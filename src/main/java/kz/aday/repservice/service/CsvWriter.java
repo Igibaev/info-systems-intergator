@@ -2,6 +2,7 @@ package kz.aday.repservice.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.opencsv.CSVWriter;
+import kz.aday.repservice.model.EntityMigration;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -19,8 +20,8 @@ import static com.opencsv.ICSVWriter.DEFAULT_QUOTE_CHARACTER;
 @Slf4j
 public class CsvWriter extends ReportWriter {
 
-    public CsvWriter(Writer writer) {
-        super(new CSVWriter(writer, ';', DEFAULT_QUOTE_CHARACTER, DEFAULT_ESCAPE_CHARACTER, DEFAULT_LINE_END));
+    public CsvWriter(Writer writer, EntityMigration entityMigration) {
+        super(new CSVWriter(writer, ';', DEFAULT_QUOTE_CHARACTER, DEFAULT_ESCAPE_CHARACTER, DEFAULT_LINE_END), entityMigration);
     }
 
     @Override

@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="#" th:action="@{/gos-zakup/export(entityName=${entity})}" th:object="${request}" method="post">
+    <form action="#" th:action="@{/gos-zakup/export(entityId=${entity})}" th:object="${request}" method="post">
         <div class="form-group row">
             <div class="col-lg-4 mt-5">
                 <label for="token">Токен авторизации</label>

@@ -14,30 +14,37 @@
 <div class="container">
     <br>
     <h2>Информация система gos-zakup</h2>
+    <div class="mb-2">
+        <a th:href="@{/gos-zakup/manual-export}">
+            <button type="button" class="btn btn-primary">Ручная выгрузка</button>
+        </a>
+    </div>
     <table class="table">
         <thead class="thead-dark text-center">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Сущность</th>
-                <th scope="col">Xlsx</th>
-                <th scope="col">Миграция</th>
+                <th scope="col">Таблица</th>
+                <th scope="col">Действие</th>
             </tr>
         </thead>
         <tbody class="text-center">
-            <tr th:if="${gzEntities.length == 0}">
+            <tr th:if="${gzEntities.size() == 0}">
                 <td scope="col"> Ни одна cущность не найдена</td>
             </tr>
             <tr th:each="entity : ${gzEntities}">
-                <th scope="row" th:text="${entity.ordinal} + 1">1</th>
+                <th scope="row" th:text="${entity.id} + 1">1</th>
                 <td th:text="${entity.nameRu}"></td>
+                <td th:text="${entity.name}"></td>
                 <td>
-                    <a th:href="@{/gos-zakup/export(entityName=${entity.name})}">
+                    <a th:href="@{/gos-zakup/export(entityId=${entity.id})}">
                         <button type="button" class="btn btn-dark">Выгрузить</button>
                     </a>
-                </td>
-                <td>
-                    <a th:href="@{/gos-zakup/migrate(entityName=${entity.name})}">
+                    <a th:href="@{/gos-zakup/migrate(entityId=${entity.id})}">
                         <button type="button" class="btn btn-primary">Мигрировать данные</button>
+                    </a>
+                    <a th:href="@{/gos-zakup/delete(entityId=${entity.id})}">
+                        <button type="button" class="btn btn-danger">Удалить</button>
                     </a>
                 </td>
             </tr>

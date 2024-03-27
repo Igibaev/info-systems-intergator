@@ -1,3 +1,13 @@
+CREATE TABLE IF NOT EXISTS entity_migration
+(
+    id             bigserial primary key,
+    entityName     varchar,
+    nameRu         varchar,
+    token         varchar,
+    url            varchar,
+    localization   varchar
+);
+
 CREATE TABLE IF NOT EXISTS migration
 (
     id             bigserial primary key,

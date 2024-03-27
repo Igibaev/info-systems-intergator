@@ -2,24 +2,21 @@ package kz.aday.repservice.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import kz.aday.repservice.api.Fields;
+import kz.aday.repservice.api.GosZakupApi;
 import kz.aday.repservice.exceptons.ResponseGZBadRequest;
-import kz.aday.repservice.model.EntityNameGZ;
+import kz.aday.repservice.model.EntityMigration;
+import kz.aday.repservice.model.EntityMigrationDto;
+import kz.aday.repservice.model.EntityMigrationField;
 import kz.aday.repservice.model.Migration;
 import kz.aday.repservice.model.RequestGZ;
 import kz.aday.repservice.model.ResponseGZ;
-import kz.aday.repservice.api.GosZakupApi;
+import kz.aday.repservice.repository.EntityRepository;
 import kz.aday.repservice.repository.MigrationRepository;
+import kz.aday.repservice.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
-import java.awt.print.Pageable;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
@@ -29,10 +26,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -40,11 +38,38 @@ public class GZService {
     private final GosZakupApi gosZakupApi;
     private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private final MigrationRepository migrationRepository;
+    private final EntityRepository entityRepository;
 
-    public GZService(GosZakupApi gzRepository, MigrationRepository migrationRepository) {
+    public GZService(GosZakupApi gzRepository,
+                     MigrationRepository migrationRepository,
+                     EntityRepository entityRepository) {
         this.migrationRepository = migrationRepository;
         this.gosZakupApi = gzRepository;
+        this.entityRepository = entityRepository;
+    }
 
+    public void deleteEntityMigration(Long entityId) {
+        EntityMigration entityMigration = entityRepository.getById(entityId);
+        entityRepository.delete(entityId);
+        entityRepository.dropAssosiatedTable(entityMigration.getName());
+    }
+
+    public void saveEntityMigration(EntityMigrationDto form) {
+        EntityMigration entityMigration = form.getEntityMigration();
+        entityMigration.addLocalization(form.getFields());
+        entityRepository.save(entityMigration);
+    }
+
+    public boolean existEntityMigration(EntityMigration entityMigration) {
+        return Optional.ofNullable(entityRepository.getByName(entityMigration.getName())).isPresent();
+    }
+
+    public EntityMigration getEntityMigrationById(Long id) {
+        return entityRepository.getById(id);
+    }
+
+    public List<EntityMigration> getAllEntityMigrations() {
+        return entityRepository.getAll();
     }
 
     public List<Migration> getAllMigrations() {
@@ -53,7 +78,7 @@ public class GZService {
             return new ArrayList<>();
         }
         migrations.forEach(migration -> {
-            EntityNameGZ entityNameGZ = EntityNameGZ.getByEntityName(migration.getEntityName());
+            EntityMigration entityNameGZ = entityRepository.getByName(migration.getEntityName());
             if (entityNameGZ != null) {
                 migration.setEntityName(String.format("%s (%s)", entityNameGZ.getNameRu(), migration.getEntityName()));
             }
@@ -63,6 +88,33 @@ public class GZService {
 
     public boolean existMigration(RequestGZ request) {
         return migrationRepository.exists(request.getGzEntityName());
+    }
+
+    public List<EntityMigrationField> getGozEntityFields(RequestGZ request) {
+        JsonNode jsonNode = gosZakupApi.executeJson(request).block();
+        if (jsonNode == null) {
+            log.error("Cannot get fields from entity request:{}", request);
+            throw new IllegalArgumentException("Cannot get fields from entity request:" + request);
+        }
+        if (jsonNode.get(Fields.items) != null) {
+            List<Map<String, JsonNode>> items = JsonUtil.convertToListRow(jsonNode);
+            if (items.isEmpty()) {
+                log.error("Items is empty request:{}", request);
+                throw new IllegalArgumentException("Items is empty request:" + request);
+            }
+
+            return items.get(0).entrySet().stream()
+                    .map(entry -> new EntityMigrationField(entry.getKey(), JsonUtil.getAsText(entry.getValue()), entry.getKey(), true))
+                    .collect(Collectors.toList());
+        } else {
+            List<EntityMigrationField> fields = new ArrayList<>();
+            jsonNode.fields().forEachRemaining(entry -> {
+                String key = entry.getKey();
+                JsonNode value = entry.getValue();
+                fields.add(new EntityMigrationField(key, JsonUtil.getAsText(value), key, true));
+            });
+            return fields;
+        }
     }
 
     public void startMigration(RequestGZ request) {
@@ -96,7 +148,7 @@ public class GZService {
                     break;
                 }
 
-                rowsMigrated+=exportedRows;
+                rowsMigrated += exportedRows;
                 migration.setExported(rowsMigrated);
                 migration.setLastRequestUrl(request.getUrl());
                 migrationRepository.executeQuery(stringWriter.toString());
@@ -133,17 +185,22 @@ public class GZService {
 
     public StreamingResponseBody createReport(RequestGZ request) {
         switch (request.getReportType()) {
-            case CSV: return writeToCsv(request);
-            case XLSX: return writeToXlsx(request);
-            case SQl: return writeToSql(request);
-            default: return writeToCsv(request);
+            case CSV:
+                return writeToCsv(request);
+            case XLSX:
+                return writeToXlsx(request);
+            case SQl:
+                return writeToSql(request);
+            default:
+                return writeToCsv(request);
         }
     }
 
     private StreamingResponseBody writeToCsv(RequestGZ request) {
         return outputStream -> {
+            EntityMigration entityMigration = entityRepository.getByName(request.getGzEntityName());
             Writer writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
-            ReportWriter reportWriter = new CsvWriter(writer);
+            ReportWriter reportWriter = new CsvWriter(writer, entityMigration);
             export(request, reportWriter);
         };
     }
@@ -156,8 +213,9 @@ public class GZService {
     }
 
     private StreamingResponseBody writeToXlsx(RequestGZ request) {
+        EntityMigration entityMigration = entityRepository.getByName(request.getGzEntityName());
         return outputStream -> {
-            ReportWriter reportWriter = new XlsxWriter(outputStream);
+            ReportWriter reportWriter = new XlsxWriter(outputStream, entityMigration);
             export(request, reportWriter);
         };
     }

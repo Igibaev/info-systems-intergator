@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 public class TaldayApiService {
     private final TaldayApi taldayApi;
     private final TaldaySaverRepository taldayApiRepository;
-    private final ExecutorService executorService = Executors.newFixedThreadPool(5);
+    private final ExecutorService executorService = Executors.newFixedThreadPool(10);
     private final ConcurrentHashMap<Long, Long> queue = new ConcurrentHashMap<>();
 
     public TaldayApiService(TaldayApi taldayApi, TaldaySaverRepository taldayApiRepository) {
@@ -57,7 +57,7 @@ public class TaldayApiService {
             if (queue.isEmpty()) {
                 counter = 0;
             }
-            if (!queue.isEmpty() && counter >= 5) {
+            if (!queue.isEmpty() && counter >= 10) {
                 try {
                     log.info("sleep for 100s");
                     Thread.sleep(100000);
@@ -66,7 +66,7 @@ public class TaldayApiService {
                 }
                 continue;
             }
-            Set<Long> stats = taldayApiRepository.getAvaliableStatsToImport(periodId, 5);
+            Set<Long> stats = taldayApiRepository.getAvaliableStatsToImport(periodId, 10);
             if (stats.isEmpty()) {
                 log.info("ALL DATA MIGRATE STOP cycle EXECUTORS");
                 break;

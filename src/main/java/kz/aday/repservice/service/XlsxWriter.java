@@ -1,6 +1,7 @@
 package kz.aday.repservice.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import kz.aday.repservice.model.EntityMigration;
 import lombok.extern.slf4j.Slf4j;
 import org.dhatim.fastexcel.BorderStyle;
 import org.dhatim.fastexcel.Workbook;
@@ -16,8 +17,8 @@ public class XlsxWriter extends ReportWriter {
     private int rowNumber;
     private Worksheet worksheet;
 
-    public XlsxWriter(OutputStream outputStream) {
-        super(new Workbook(outputStream, "gz", "1.0"));
+    public XlsxWriter(OutputStream outputStream, EntityMigration entityMigration) {
+        super(new Workbook(outputStream, "gz", "1.0"), entityMigration);
         this.worksheet = workbook.newWorksheet("sheet 1");
         this.rowNumber = 0;
     }

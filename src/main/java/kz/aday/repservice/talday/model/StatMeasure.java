@@ -12,7 +12,7 @@ public class StatMeasure {
     private String statMeasureId;
     private String id;
     private String text;
-    private Long kfc;
+    private Long kfc; // это значение для того чтобы расчитать значение по заданому критерию, нужно на это число делить
     private String sign;
     private Boolean leaf;
     private Boolean expand;
