@@ -1,6 +1,8 @@
 package kz.aday.repservice.talday;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import kz.aday.repservice.api.TaldayApi;
+import kz.aday.repservice.service.SqlWriter;
 import kz.aday.repservice.talday.model.Stat;
 import kz.aday.repservice.talday.model.StatData;
 import kz.aday.repservice.talday.model.StatDataForMigration;
@@ -16,7 +18,9 @@ import kz.aday.repservice.talday.model.dto.TaldayRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
@@ -88,7 +92,29 @@ public class TaldayReportService {
     }
 
     public List<StatMeasure> getStatMeasures(TaldayRequest request) {
-        return taldayApi.getStatMeasures(request.getStatInfo().getMeasureId()).block();
+        String statIndexHtmlPage = taldayApi.getStatIndexHtmlPage(request.getStatId()).block();
+        if (!statIndexHtmlPage.contains("measure: {")) {
+            List<StatMeasure> statMeasures = taldayApi.getStatMeasures(request.getStatInfo().getMeasureId()).block();
+            if (statMeasures == null || statMeasures.isEmpty()) {
+                StatMeasure statMeasure = new StatMeasure();
+                statMeasure.setText(request.getStatInfo().getMeasureName());
+                return List.of(statMeasure);
+            }
+            return statMeasures;
+        }
+        String startMeasureString = statIndexHtmlPage.substring(statIndexHtmlPage.indexOf("measure: {"));
+        String measureString = startMeasureString.substring(0, startMeasureString.indexOf("},"));
+        String startMeasureIdString = measureString.substring(measureString.indexOf("id: ") + "id: ".length());
+        String extractedMeasureId = startMeasureIdString.substring(0, startMeasureIdString.indexOf(","));
+        String startMeasureName = measureString.substring(measureString.indexOf("name: \"") + "name: \"".length());
+        String extractedMeasureName = startMeasureName.substring(0, startMeasureName.indexOf("\""));
+        List<StatMeasure> statMeasures = taldayApi.getStatMeasures(extractedMeasureId).block();
+        if (statMeasures == null || statMeasures.isEmpty()) {
+            StatMeasure statMeasure = new StatMeasure();
+            statMeasure.setText(extractedMeasureName);
+            return List.of(statMeasure);
+        }
+        return statMeasures;
     }
 
     public StatInfo getStatInfo(Long statId) {
@@ -141,7 +167,7 @@ public class TaldayReportService {
                 .dicIds(dicIds)
                 .idx(idx)
                 .build();
-        for (String dic: dicIds.split(",")) {
+        for (String dic : dicIds.split(",")) {
             statFilterRequest.setDic(dic);
             List<StatFilter> statFilters = taldayApi.getFilterListByStatFilterRequest(statFilterRequest).block();
             if (statFilters.isEmpty()) {
@@ -149,7 +175,7 @@ public class TaldayReportService {
                 continue;
             }
             log.info("Filters found by dicIds:{} dicId:{}, count:{}", dicIds, dic, statFilters.size());
-            for (StatFilter statFilter: statFilters) {
+            for (StatFilter statFilter : statFilters) {
                 statFilter.setRequestParamsToAll(statPeriodId, statId, statFilterRequest.getDicIds(), statFilterRequest.getDic());
             }
             statFiltersAll.addAll(statFilters);
@@ -183,9 +209,9 @@ public class TaldayReportService {
     }
 
     private List<StatData> getStatDataWithoutFilters(Long statPeriodId,
-                                                  Long statId,
-                                                  StatSegment statSegment,
-                                                  String measureId
+                                                     Long statId,
+                                                     StatSegment statSegment,
+                                                     String measureId
     ) {
         StatDataRequest statDataRequest = StatDataRequest.builder()
                 .statPeriodId(statPeriodId)
@@ -237,8 +263,8 @@ public class TaldayReportService {
         StatSegment statSegment = request.getStatSegment();
         StatMeasure statMeasure = request.getStatMeasure();
         StatFilter statFilter = request.getStatFilter();
-        for (StatData statData: statDataList) {
-            for (Map.Entry<String, String> statDataMap: statData.getDateDataMap().entrySet()) {
+        for (StatData statData : statDataList) {
+            for (Map.Entry<String, String> statDataMap : statData.getDateDataMap().entrySet()) {
                 if (statDataMap.getKey().startsWith("y")) {
                     StatDataForMigration statDataForMigration = StatDataForMigration.builder()
                             .statMeasureName(statMeasure.getText())
@@ -255,8 +281,18 @@ public class TaldayReportService {
                 }
             }
         }
-        statDataForMigrationList.forEach(System.out::println);
-        return null;
+        try (StringWriter stringWriter = new StringWriter()) {
+            SqlWriter sqlWriter = new SqlWriter(stringWriter, true, false);
+            List<Map<String, JsonNode>> rows = new ArrayList<>();
+            statDataForMigrationList.forEach(st -> rows.add(st.row()));
+            sqlWriter.writeHeaders(List.of(StatDataForMigration.headers), tableName);
+            sqlWriter.writeRows(rows);
+            sqlWriter.finish();
+            taldayApiRepository.executeQuery(stringWriter.toString());
+        } catch (IOException e) {
+            throw new RuntimeException("Серверная ошибка при сохранение в базу \n" + e.getMessage());
+        }
+        return statDataForMigrationList;
     }
 
     private String convertValueByMeasure(String value, StatMeasure statMeasure, StatInfo statInfo) {
@@ -264,9 +300,13 @@ public class TaldayReportService {
         try {
             Double convertedValue = Double.valueOf(value);
             Double convertedKfc = Double.valueOf(kfc);
-            return String.valueOf(convertedValue / convertedKfc);
+            BigDecimal numerator = new BigDecimal(convertedValue);
+            BigDecimal denominator = new BigDecimal(convertedKfc);
+            BigDecimal result = numerator.divide(denominator);
+            return result.toPlainString();
         } catch (Exception e) {
-            throw e;
+            log.warn("IGNORE on stat:{} values:{}, kfc:{} return empty string", statInfo.getId(), value,kfc);
+            return "";
         }
     }
 
@@ -279,7 +319,7 @@ public class TaldayReportService {
         } else {
             return Month.of(Integer.parseInt(month)).getDisplayName(TextStyle.FULL_STANDALONE, Locale.forLanguageTag("ru")) +
                     " " +
-                    year +  " год";
+                    year + " год";
         }
     }
 }

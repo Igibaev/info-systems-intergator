@@ -56,7 +56,7 @@
 
         <div class="form-group row">
             <label>Наименование таблицы</label>
-            <input class="form-control" type="text" th:field="*{request.tableName}">
+            <input class="form-control" type="text" th:field="*{request.tableName}" placeholder="Только латиницей без спецсимволов">
             <label>Выберите тип измерения</label>
             <select class="form-control" th:field="*{request.statMeasureJson}" >
                 <option th:each="part : ${statMeasures}" th:value="${part.toJson()}" th:text="${part.text}"></option>

@@ -2,10 +2,12 @@ package kz.aday.repservice.talday;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kz.aday.repservice.service.SqlWriter;
 import kz.aday.repservice.talday.model.Passport;
 import kz.aday.repservice.talday.model.Stat;
 import kz.aday.repservice.talday.model.StatCombination;
 import kz.aday.repservice.talday.model.StatData;
+import kz.aday.repservice.talday.model.StatDataForMigration;
 import kz.aday.repservice.talday.model.StatFilter;
 import kz.aday.repservice.talday.model.StatInfo;
 import kz.aday.repservice.talday.model.StatMeasure;
@@ -19,6 +21,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -727,5 +730,20 @@ public class TaldaySaverRepository {
             }
         }
         return stats;
+    }
+
+    public void executeQuery(String string) {
+        jdbcTemplate.getJdbcOperations().execute(string);
+    }
+
+    public void cleanNotDoneMigrations() {
+        jdbcTemplate.getJdbcOperations().execute("truncate table stat_migration_busy;");
+    }
+
+    public Long getNotMigratedStatsCount() {
+        String query = "SELECT count(*) FROM stats_periods s\n" +
+                "WHERE (s.stat_period_id, s.stat_id) " +
+                "NOT IN (SELECT sm.period_id, sm.stat_id FROM stat_migration_status sm WHERE sm.total > 0);\n";
+        return jdbcTemplate.queryForObject(query, EmptySqlParameterSource.INSTANCE, Long.class);
     }
 }

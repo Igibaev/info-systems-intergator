@@ -136,30 +136,31 @@ public class GZService {
         try {
             int rowsMigrated = 0;
             while (true) {
-                StringWriter stringWriter = new StringWriter();
-                ReportWriter writer = new SqlWriter(stringWriter, isDDLQueryNeed, request.isTruncateTable());
-                int exportedRows = export(request, writer);
-                log.info("Rows ready to migration: {}", exportedRows);
+                try (StringWriter stringWriter = new StringWriter()) {
+                    ReportWriter writer = new SqlWriter(stringWriter, isDDLQueryNeed, request.isTruncateTable());
+                    int exportedRows = export(request, writer);
+                    log.info("Rows ready to migration: {}", exportedRows);
 
-                if (exportedRows == -1) {
-                    log.error("migration failed request:{}", request);
-                    migration.setStatus(Migration.Status.FAILED);
-                    migrationRepository.update(migration);
-                    break;
-                }
+                    if (exportedRows == -1) {
+                        log.error("migration failed request:{}", request);
+                        migration.setStatus(Migration.Status.FAILED);
+                        migrationRepository.update(migration);
+                        break;
+                    }
 
-                rowsMigrated += exportedRows;
-                migration.setExported(rowsMigrated);
-                migration.setLastRequestUrl(request.getUrl());
-                migrationRepository.executeQuery(stringWriter.toString());
-                migrationRepository.update(migration);
-                log.info("Rows migrated {}", rowsMigrated);
-                isDDLQueryNeed = false;
-                if (request.isDone()) {
-                    log.info("All rows migrated, stop migration");
-                    migration.setStatus(Migration.Status.DONE);
+                    rowsMigrated += exportedRows;
+                    migration.setExported(rowsMigrated);
+                    migration.setLastRequestUrl(request.getUrl());
+                    migrationRepository.executeQuery(stringWriter.toString());
                     migrationRepository.update(migration);
-                    break;
+                    log.info("Rows migrated {}", rowsMigrated);
+                    isDDLQueryNeed = false;
+                    if (request.isDone()) {
+                        log.info("All rows migrated, stop migration");
+                        migration.setStatus(Migration.Status.DONE);
+                        migrationRepository.update(migration);
+                        break;
+                    }
                 }
             }
         } catch (Exception e) {

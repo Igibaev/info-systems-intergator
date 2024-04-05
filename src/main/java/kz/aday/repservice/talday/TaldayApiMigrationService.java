@@ -40,6 +40,10 @@ public class TaldayApiMigrationService {
         this.taldayApiRepository = taldayApiRepository;
     }
 
+    public Long getNotMigratedStatsCount() {
+        return taldayApiRepository.getNotMigratedStatsCount();
+    }
+
     public void startMigration() {
         log.info("Start migration");
         migrateStartPeriods();
@@ -53,6 +57,7 @@ public class TaldayApiMigrationService {
     }
 
     private void paralelMigrateStatData() {
+        taldayApiRepository.cleanNotDoneMigrations();
         Long periodId = 7L;
         boolean isStarted = false;
         int counter = 0;

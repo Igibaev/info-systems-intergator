@@ -46,6 +46,9 @@ public abstract class ReportWriter {
         if (entityMigration != null && entityMigration.getLocalization().containsKey(key)) {
             return entityMigration.getLocalization().get(key);
         }
+        if (gzEntityName.contains("fromTalday")) {
+            return Messages.getText(key);
+        }
         return Messages.getText(gzEntityName + "." + key);
     }
 

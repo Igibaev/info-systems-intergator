@@ -93,6 +93,7 @@ public class TaldayApi {
             "https://taldau.stat.gov.kz/ru/NewIndex/GetIndexTreeData";
     private String getDateListForStatDataByStatId = "https://taldau.stat.gov.kz/ru/NewIndex/GetIndexPeriods";
     private String getStatCombinations = "https://taldau.stat.gov.kz/ru/PivotGrid/getCombinations";
+    private String getStatIndexHtmlPage = "https://taldau.stat.gov.kz/ru/NewIndex/GetIndex/";
 
     private final WebClient webClient;
     private final ObjectMapper objectMapper;
@@ -102,6 +103,15 @@ public class TaldayApi {
         this.webClient = webClient;
         this.taldayGetterRepository = taldayGetterRepository;
         this.objectMapper = new ObjectMapper();
+    }
+
+    public Mono<String> getStatIndexHtmlPage(Long statId) {
+        return webClient.get()
+                .uri(getStatIndexHtmlPage + statId)
+                .retrieve()
+                .bodyToMono(String.class)
+                .retryWhen(RETRY_TIMES.filter(this::is5xxErrorArrayOutOfBound))
+                .onErrorResume((mono) -> Mono.just(""));
     }
 
     public List<StatFilter> getFiltersByStatCombination(Long statPeriodId, Long statId, String dicIds, String dic) {

@@ -17,9 +17,9 @@
 <div class="container">
     <br/>
     <h2>Информация система taldau</h2>
-    <h4>Данные сохранены в таблицу: </h4>
-    <span th:text="${request.getTableName()}"></span>
-    <a th:href="/">
+    <h4>Данные сохранены в таблицу: <span th:text="${request.getTableName()}"></span></h4>
+    <h4>Кол-во записей: <span th:text="${statDataCount}"></span></h4>
+    <a th:href="@{/}">
         <button class="btn btn-primary">
             На главную страницу
         </button>

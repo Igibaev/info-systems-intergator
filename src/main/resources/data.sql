@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS stat_info
     preferred_measure_sign        varchar
 );
 
-CREATE UNIQUE INDEX IF NOT EXISTS stat_info_passport_unique ON stat_info
+CREATE UNIQUE INDEX IF NOT EXISTS stat_info_unique ON stat_info
     (
     id,
     name_path,
@@ -251,3 +251,18 @@ CREATE TABLE IF NOT EXISTS stat_data_period
 
 create unique index if not exists stat_data_period_unique on stat_data_period (key, value);
 
+CREATE TABLE IF NOT EXISTS stat_data_migration_locale
+(
+    key   text,
+    value text
+);
+
+create unique index if not exists stat_data_migration_locale_unique on stat_data_migration_locale (key, value);
+
+INSERT INTO stat_data_migration_locale (key, value) VALUES ('stat_name','Наименование статистики') ON CONFLICT DO NOTHING;
+INSERT INTO stat_data_migration_locale (key, value) VALUES ('filter_name','Примененные фильтры') ON CONFLICT DO NOTHING;
+INSERT INTO stat_data_migration_locale (key, value) VALUES ('stat_data_text','Наименочание данных статистики(обычно там регион или другие данные)') ON CONFLICT DO NOTHING;
+INSERT INTO stat_data_migration_locale (key, value) VALUES ('stat_measure_name','Тип измерения') ON CONFLICT DO NOTHING;
+INSERT INTO stat_data_migration_locale (key, value) VALUES ('stat_date','Дата') ON CONFLICT DO NOTHING;
+INSERT INTO stat_data_migration_locale (key, value) VALUES ('stat_value','Значение по статистике согласно типу измерения') ON CONFLICT DO NOTHING;
+INSERT INTO stat_data_migration_locale (key, value) VALUES ('stat_raw_value','Значение по статистике(без применения типа измерения)') ON CONFLICT DO NOTHING;
