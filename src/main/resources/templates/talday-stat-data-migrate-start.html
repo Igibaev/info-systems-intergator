@@ -9,27 +9,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <title>Talday</title>
 </head>
 <body>
 <div class="container">
-    <br>
+    <br/>
     <h2>Информация система taldau</h2>
-    <form action="#" th:action="@{/talday-stats}" method="post">
-        <div class="form-group row">
-            <span>Выберите тип периода для статистики</span>
-            <select class="form-control" th:field="*{request.statPeriodJson}">
-                <option th:each="part : ${statPeriods}"
-                        th:value="${part.toJson()}"
-                        th:text="${part.text}"></option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Продолжить</button>
-    </form>
-
-
+    <h4>Данные сохранены в таблицу: </h4>
+    <span th:text="${request.getTableName()}"></span>
+    <a th:href="/">
+        <button class="btn btn-primary">
+            На главную страницу
+        </button>
+    </a>
 </div>
 
 
@@ -40,7 +34,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+<script>
+    function showFilters() {
+        // Get the checkbox
+        var checkBox = document.getElementById("myCheck");
+        // Get the output text
+        var text = document.getElementById("filters");
+
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true){
+            text.style.display = "block";
+        } else {
+            text.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 </html>

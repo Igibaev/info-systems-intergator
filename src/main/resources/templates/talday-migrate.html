@@ -17,19 +17,6 @@
 <div class="container">
     <br>
     <h2>Информация система taldau</h2>
-    <form action="#" th:action="@{/talday-stats}" method="post">
-        <div class="form-group row">
-            <span>Выберите тип периода для статистики</span>
-            <select class="form-control" th:field="*{request.statPeriodJson}">
-                <option th:each="part : ${statPeriods}"
-                        th:value="${part.toJson()}"
-                        th:text="${part.text}"></option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Продолжить</button>
-    </form>
-
-
 </div>
 
 

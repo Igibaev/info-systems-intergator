@@ -1,5 +1,6 @@
 package kz.aday.repservice.talday.model;
 
+import kz.aday.repservice.util.JsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,4 +17,8 @@ public class StatMeasure {
     private String sign;
     private Boolean leaf;
     private Boolean expand;
+
+    public String toJson() {
+        return JsonUtil.toJson(this);
+    }
 }

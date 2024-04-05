@@ -1,5 +1,6 @@
 package kz.aday.repservice.talday.model;
 
+import kz.aday.repservice.util.JsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -50,6 +51,10 @@ public class StatInfo {
                 ", preferredMeasureKfc=" + preferredMeasureKfc +
                 ", preferredMeasureSign='" + preferredMeasureSign + '\'' +
                 '}';
+    }
+
+    public String toJson() {
+        return JsonUtil.toJson(this);
     }
 
 }

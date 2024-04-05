@@ -1,6 +1,7 @@
 package kz.aday.repservice.talday.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import kz.aday.repservice.util.JsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,14 +34,17 @@ public class StatSegment {
     private Long statPeriodId;
     private Long statId;
 
+    @JsonIgnore
     public String getDicIdsSeparatedBy(String value) {
         return dicId.replace(SEPARATOR_FOR_DIC_ID, value);
     }
 
+    @JsonIgnore
     public Integer getTermIdsCount() {
         return termIds.split(SEPARATOR_FOR_TERMS).length;
     }
 
+    @JsonIgnore
     public String getTermIdsReplacedByOrderAndNewTermId(int orderNum, StatFilter statFilter) {
         String[] terms = termIds.split(SEPARATOR_FOR_TERMS);
         if (orderNum >= terms.length) {
@@ -51,9 +55,25 @@ public class StatSegment {
         return StringUtils.join(terms, ",");
     }
 
+    @JsonIgnore
+    public String getTermIdsByOrder(int orderNum, StatFilter statFilter) {
+        String[] terms = termIds.split(SEPARATOR_FOR_TERMS);
+        if (orderNum >= terms.length) {
+            terms[orderNum-1] = statFilter.getId().toString();
+        } else {
+            terms[orderNum] = statFilter.getId().toString();
+        }
+        return StringUtils.join(terms, ",");
+    }
+
+    @JsonIgnore
     public String getFirstTermId() {
         String[] terms = termIds.split(SEPARATOR_FOR_TERMS);
         return terms[0];
+    }
+
+    public String toJson() {
+        return JsonUtil.toJson(this);
     }
 
 }

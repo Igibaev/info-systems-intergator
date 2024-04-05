@@ -1,6 +1,7 @@
 package kz.aday.repservice.talday.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import kz.aday.repservice.util.JsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,9 @@ public class Stat {
     private String code;
     @JsonProperty("info")
     private String info;
+
+    public String toJson() {
+        return JsonUtil.toJson(this);
+    }
 
 }

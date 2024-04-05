@@ -1,5 +1,6 @@
 package kz.aday.repservice.talday.model;
 
+import kz.aday.repservice.util.JsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class StatFilter {
     private List<StatFilter> children;
@@ -40,6 +42,10 @@ public class StatFilter {
         for (StatFilter statFilter: Optional.ofNullable(children).orElse(new ArrayList<>())) {
             statFilter.setRequestParamsToAll(statPeriodId, statId, dicIds, dicId);
         }
+    }
+
+    public String toJson() {
+        return JsonUtil.toJson(this);
     }
 }
 

@@ -27,6 +27,12 @@ CREATE TABLE IF NOT EXISTS stat_period
 COMMENT ON COLUMN stat_period.id IS 'Уникальный идентификатор периода для статистики, нужен для выборки';
 COMMENT ON COLUMN stat_period.text IS 'Текстовое значение периода';
 
+CREATE UNIQUE INDEX IF NOT EXISTS stats_period_unique ON stat_period
+    (
+    id,
+    text
+    );
+
 CREATE TABLE IF NOT EXISTS stats_periods
 (
     stat_period_id       bigint  not null,
@@ -34,6 +40,13 @@ CREATE TABLE IF NOT EXISTS stats_periods
 );
 COMMENT ON COLUMN stats_periods.stat_period_id IS 'Связывает ИД периода с ИД статистики';
 COMMENT ON COLUMN stats_periods.stat_id IS 'Связывает ИД статистики с ИД периода';
+
+CREATE UNIQUE INDEX IF NOT EXISTS stats_periods_unique ON stats_periods
+    (
+    stat_period_id,
+    stat_id
+    );
+
 
 CREATE TABLE IF NOT EXISTS stat
 (
@@ -46,6 +59,14 @@ COMMENT ON COLUMN stat.id IS 'ИД статистики';
 COMMENT ON COLUMN stat.name IS 'Наименование стат';
 COMMENT ON COLUMN stat.code IS 'Связывает ИД статистики с ИД периода';
 COMMENT ON COLUMN stat.info IS 'Связывает ИД статистики с ИД периода';
+
+CREATE UNIQUE INDEX IF NOT EXISTS stat_unique ON stat
+    (
+    id,
+    name,
+    code,
+    info
+    );
 
 CREATE TABLE IF NOT EXISTS stat_info
 (
@@ -66,12 +87,38 @@ CREATE TABLE IF NOT EXISTS stat_info
     preferred_measure_sign        varchar
 );
 
+CREATE UNIQUE INDEX IF NOT EXISTS stat_info_passport_unique ON stat_info
+    (
+    id,
+    name_path,
+    name,
+    short_name,
+    full_code,
+    cg_params,
+    term_Names,
+    measure_id,
+    measure_kfc,
+    measure_sign,
+    measure_name,
+    preferred_measure_id,
+    preferred_measure_name,
+    preferred_measure_kfc,
+    preferred_measure_sign
+    );
+
 CREATE TABLE IF NOT EXISTS stat_info_passport
 (
     stat_id   bigint  not null,
     title     varchar not null,
     value     varchar
 );
+
+CREATE UNIQUE INDEX IF NOT EXISTS stat_info_passport_unique ON stat_info_passport
+    (
+    stat_id,
+    title,
+    value
+    );
 
 CREATE TABLE IF NOT EXISTS stat_measure
 (
@@ -83,6 +130,17 @@ CREATE TABLE IF NOT EXISTS stat_measure
     leaf   boolean,
     expand boolean
 );
+
+CREATE UNIQUE INDEX IF NOT EXISTS stat_measure_unique ON stat_measure
+    (
+    stat_measure_id,
+    id,
+    text,
+    kfc,
+    sign,
+    leaf,
+    expand
+    );
 
 CREATE TABLE IF NOT EXISTS stat_segment
 (
@@ -103,6 +161,25 @@ CREATE TABLE IF NOT EXISTS stat_segment
     stat_id        bigint
 );
 
+CREATE UNIQUE INDEX IF NOT EXISTS stat_segment_unique ON stat_segment
+    (
+    dic_id        ,
+    dic_class_id   ,
+    names        ,
+    full_names    ,
+    term_ids      ,
+    term_names    ,
+    dic_count     ,
+    idx          ,
+    id           ,
+    segment_order,
+    dec_format    ,
+    keyword_dic   ,
+    max_date      ,
+    stat_period_id ,
+    stat_id
+    );
+
 CREATE TABLE IF NOT EXISTS stat_combinations
 (
     dic_count        int,
@@ -112,6 +189,9 @@ CREATE TABLE IF NOT EXISTS stat_combinations
     stat_period_id   bigint,
     stat_id          bigint
 );
+
+CREATE UNIQUE INDEX IF NOT EXISTS stat_combinations_unique ON stat_combinations
+    (id, dic_count, text, full_text, stat_id, stat_period_id);
 
 CREATE TABLE IF NOT EXISTS stat_filters
 (
@@ -123,7 +203,8 @@ CREATE TABLE IF NOT EXISTS stat_filters
     dic_ids varchar,
     dic varchar
 );
-CREATE UNIQUE INDEX IF NOT EXISTS stat_filters_unique ON stat_filters (id, stat_period_id, stat_id, dic_ids, dic);
+CREATE UNIQUE INDEX IF NOT EXISTS stat_filters_unique ON stat_filters
+    (id, parent_id, text, stat_period_id, stat_id, dic_ids, dic);
 
 CREATE TABLE IF NOT EXISTS stat_data
 (
@@ -155,8 +236,18 @@ CREATE TABLE IF NOT EXISTS stat_migration_status
     total bigint
 );
 
+
 CREATE TABLE IF NOT EXISTS stat_migration_busy
 (
     period_id bigint,
     stat_id bigint
 );
+
+CREATE TABLE IF NOT EXISTS stat_data_period
+(
+    key   text,
+    value text
+);
+
+create unique index if not exists stat_data_period_unique on stat_data_period (key, value);
+

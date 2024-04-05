@@ -1,0 +1,12 @@
+INSERT INTO public.stat_period (id, text) VALUES (7, 'Год') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (5, 'Квартал') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (6, 'Полугодие') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (4, 'Месяц') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (10, 'Полугодие с накоплением') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (9, 'Квартал с накоплением') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (8, 'Месяц с накоплением') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (2, 'Неделя') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (11, 'Два раза в год') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (12, 'Один раз в год') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (16, 'Один раз в два года') ON CONFLICT DO NOTHING;
+INSERT INTO public.stat_period (id, text) VALUES (17, 'Единовременная') ON CONFLICT DO NOTHING;

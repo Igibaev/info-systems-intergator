@@ -1,6 +1,8 @@
 package kz.aday.repservice.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import kz.aday.repservice.api.Fields;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.Map;
 public class JsonUtil {
     private final static String text = "Текстовое";
     private final static String array= "Массив";
+    private final static ObjectMapper objectMapper = new ObjectMapper();
 
     public static List<Map<String, JsonNode>> convertToListRow(JsonNode node) {
         List<Map<String, JsonNode>> rows = new ArrayList<>();
@@ -51,5 +54,17 @@ public class JsonUtil {
             return value.asText();
         }
         return null;
+    }
+
+    public static String toJson(Object data) {
+        try {
+            return objectMapper.writeValueAsString(data);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static ObjectMapper objectMapper() {
+        return objectMapper;
     }
 }

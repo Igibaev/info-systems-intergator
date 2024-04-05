@@ -24,12 +24,12 @@ import java.util.concurrent.Executors;
 
 @Slf4j
 @Controller
-public class ReportController {
+public class GzController {
     private final ExecutorService executorService = Executors.newFixedThreadPool(5);
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd_MM_yyyy");
     private final GZService reportService;
 
-    public ReportController(GZService reportService) {
+    public GzController(GZService reportService) {
         this.reportService = reportService;
     }
 
@@ -38,11 +38,11 @@ public class ReportController {
         return "errorPage";
     }
 
-    @GetMapping("/")
+    @GetMapping("/gos-zakup")
     public String mainPage(Model model) {
         model.addAttribute("gzEntities", reportService.getAllEntityMigrations());
         model.addAttribute("migrations", reportService.getAllMigrations());
-        return "index";
+        return "gos-zakup-index";
     }
 
     @GetMapping("/gos-zakup/manual-export")
@@ -165,18 +165,4 @@ public class ReportController {
         }
 
     }
-
-    @GetMapping("/talday/export")
-    public String taldayExport(@RequestParam String entityName, Model model) {
-        model.addAttribute("entity", entityName);
-        model.addAttribute("request", new RequestGZ());
-        return "talday";
-    }
-
-    @GetMapping("/talday/migrate") //
-    public String gtaldayMigrate(Model model) {
-        model.addAttribute("request", new RequestGZ());
-        return "talday-migrate";
-    }
-
 }

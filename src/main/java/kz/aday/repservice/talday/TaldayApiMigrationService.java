@@ -23,33 +23,36 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class TaldayApiService {
+public class TaldayApiMigrationService {
     private final TaldayApi taldayApi;
     private final TaldaySaverRepository taldayApiRepository;
     private final ExecutorService executorService = Executors.newFixedThreadPool(10);
     private final ConcurrentHashMap<Long, Long> queue = new ConcurrentHashMap<>();
 
-    public TaldayApiService(TaldayApi taldayApi, TaldaySaverRepository taldayApiRepository) {
+    public TaldayApiMigrationService(TaldayApi taldayApi, TaldaySaverRepository taldayApiRepository) {
         this.taldayApi = taldayApi;
         this.taldayApiRepository = taldayApiRepository;
     }
 
     public void startMigration() {
         log.info("Start migration");
-//        migrateStartPeriods();
-//        migrateStats();
-//        migrateStatInfos();
-//        migrateStatMeasures();
-//        migrateStatSegments();
-//        migrateStatCombinations();
-//        migrateStatFilters();
+        migrateStartPeriods();
+        migrateStats();
+        migrateStatInfos();
+        migrateStatMeasures();
+        migrateStatSegments();
+        migrateStatCombinations();
+        migrateStatFilters();
+        paralelMigrateStatData();
+    }
+
+    private void paralelMigrateStatData() {
         Long periodId = 7L;
         boolean isStarted = false;
         int counter = 0;
@@ -408,27 +411,4 @@ public class TaldayApiService {
         return allStatData;
     }
 
-//    private List<StatFilter> getAllStatFilterRecursive(List<StatFilter> statFilterList, StatFilterRequest statFilterRequest) {
-//        List<StatFilter> statFilters = new ArrayList<>(statFilterList);
-//        if (statFilters.isEmpty()) {
-//            return statFilters;
-//        } else {
-//            statFilterList.forEach(statFilter -> statFilter.setParentId(statFilterRequest.getNodeId()));
-//            for (StatFilter statFilter : statFilterList) {
-//                statFilterRequest.setNodeId(statFilter.getId());
-//                if (statFilter.isLeaf()) {
-//                    log.info("Filter:{} is leaf, skip inner filters", statFilter.getText());
-//                    continue;
-//                }
-//                List<StatFilter> innerStatFilters = getAllStatFilterRecursive(
-//                        taldayApi.getFilterListByStatFilterRequest(statFilterRequest).block(),
-//                        statFilterRequest
-//                );
-//                if (innerStatFilters != null && !innerStatFilters.isEmpty()) {
-//                    statFilters.addAll(innerStatFilters);
-//                }
-//            }
-//        }
-//        return statFilters;
-//    }
 }
