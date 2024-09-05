@@ -1,8 +1,8 @@
 package kz.aday.repservice.repository;
 
 import kz.aday.repservice.model.Migration;
+import kz.aday.repservice.model.RequestGZ;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.EmptySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -24,6 +24,11 @@ public class MigrationRepository {
     private final String INSERT =
             "INSERT INTO migration (id, entityName, total, exported, lastRequestUrl, createdDate, status) \n" +
             "VALUES (:id, :entityName, :total, :exported, :lastRequestUrl, :createdDate, :status);";
+
+    private final String INSERT_FAILED =
+            "INSERT INTO failed_migration (entityName, requestUrl, createdDate) \n" +
+                    "VALUES (:entityName, :request, :createdDate);";
+
 
     private final String UPDATE =
             "UPDATE migration SET\n" +
@@ -131,5 +136,13 @@ public class MigrationRepository {
                 .createdDate(createdDate)
                 .status(status)
                 .build();
+    }
+
+    public void saveFailedRequest(RequestGZ request) {
+        SqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("entityName", request.getGzEntityName())
+                .addValue("request", request.getUrl())
+                .addValue("createdDate", LocalDateTime.now());
+        jdbcTemplate.update(INSERT_FAILED, parameterSource);
     }
 }

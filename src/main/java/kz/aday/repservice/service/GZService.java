@@ -14,7 +14,9 @@ import kz.aday.repservice.repository.EntityRepository;
 import kz.aday.repservice.repository.MigrationRepository;
 import kz.aday.repservice.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import java.io.IOException;
@@ -135,11 +137,25 @@ public class GZService {
         boolean isDDLQueryNeed = true;
         try {
             int rowsMigrated = 0;
+            int countFailedRequests = 0;
             while (true) {
                 try (StringWriter stringWriter = new StringWriter()) {
                     ReportWriter writer = new SqlWriter(stringWriter, isDDLQueryNeed, request.isTruncateTable());
+
                     int exportedRows = export(request, writer);
                     log.info("Rows ready to migration: {}", exportedRows);
+
+                    if (countFailedRequests >= 100) {
+                        log.error("tries more than 100, migration failed request:{}", request);
+                        break;
+                    }
+
+                    if (exportedRows == -10) {
+                        log.info("Something happend with one request, try more {} reqeust {}", countFailedRequests, request);
+                        migrationRepository.saveFailedRequest(request);
+                        countFailedRequests++;
+                        continue;
+                    }
 
                     if (exportedRows == -1) {
                         log.error("migration failed request:{}", request);
@@ -222,6 +238,7 @@ public class GZService {
     }
 
     private int export(RequestGZ request, ReportWriter reportWriter) throws IOException {
+        Throwable exception;
         try {
             int rowsExported;
             if (request.getDateTo() != null && request.getDateFrom() != null) {
@@ -232,9 +249,17 @@ public class GZService {
             log.info("Report is done. Rows exported:{}", rowsExported);
             return rowsExported;
         } catch (Exception e) {
+            exception = e;
+            log.error("Caught exception request:{}, \n{}",request, e);
             e.printStackTrace();
         } finally {
             reportWriter.finish();
+        }
+        if (exception instanceof WebClientResponseException) {
+            WebClientResponseException webClientResponseException = (WebClientResponseException) exception;
+            if (webClientResponseException.getStatusCode() == HttpStatus.FORBIDDEN) {
+                return -10;
+            }
         }
         return -1;
     }

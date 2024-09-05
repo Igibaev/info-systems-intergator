@@ -19,6 +19,14 @@ CREATE TABLE IF NOT EXISTS migration
     status         varchar
 );
 
+CREATE TABLE IF NOT EXISTS failed_migration
+(
+    id             bigserial primary key,
+    entityName     varchar,
+    requestUrl     varchar,
+    createdDate    timestamp
+);
+
 CREATE TABLE IF NOT EXISTS stat_period
 (
     id       bigint  not null,

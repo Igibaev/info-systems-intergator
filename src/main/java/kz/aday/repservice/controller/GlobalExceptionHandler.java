@@ -1,4 +1,4 @@
-package kz.aday.repservice.controller;//package kz.aday.reportservice.controller;
+package kz.aday.repservice.controller;
 
 
 

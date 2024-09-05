@@ -3,8 +3,8 @@ server:
 spring:
   sql:
     init:
-      mode: never
-      data-locations: [classpath:data.sql, classpath:stats_periods.sql,classpath:stat.sql,classpath:stat_segment.sql, classpath:stat_period.sql,classpath:stat_measure.sql, classpath:stat_info.sql,classpath:stat_info_passport.sql, classpath:stat_data_period.sql]
+      mode: always
+      data-locations: [classpath:data.sql]
   datasource:
     url: jdbc:postgresql://localhost:5432/tatatest
     username: postgres
